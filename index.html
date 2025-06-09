@@ -19,12 +19,8 @@
             document.body.innerHTML = html;
           })
           .catch(() => {
-            // If fallback.html also fails, show a minimal message
-            document.body.innerHTML = `
-              <h1>Crypt Server Offline</h1>
-              <p>It seems the Raspberry Pi is offline or sleeping.</p>
-              <p>Please try again later.</p>`;
-          });
+            // If fallback.html also fails, redirect to website
+            location.href = "https://pup-profound-mite.ngrok-free.app";
       });
   </script>
 </head>
