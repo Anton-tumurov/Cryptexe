@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crypt</title>
+  <link rel="stylesheet" href="static/style.css">
+  <script>
+    fetch("https://pup-profound-mite.ngrok-free.app", {mode: 'no-cors'})
+      .then(() => {
+        // Redirect to live Pi server
+        location.href = "https://pup-profound-mite.ngrok-free.app";
+      })
+      .catch(() => {
+        // Show fallback message
+        document.body.innerHTML = `
+          <h1>Crypt Server Offline</h1>
+          <p>It seems the Raspberry Pi is offline or sleeping.</p>
+          <p>Please try again later.</p>`;
+      });
+  </script>
+</head>
+<body>
+  <p>Redirecting to Crypt…</p>
+</body>
+</html>
