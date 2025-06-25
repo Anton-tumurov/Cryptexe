@@ -17,8 +17,8 @@
                 <h2>Download</h2>
                 <p>
                     <a class="download-btn" href="{link}">Download Crypt {version}</a>
+                    Or <a class="torrent" href="{torrentlink}">download the torrent</a> (if you're into that kind of stuff
                 </p>
-                <p>This download link auto-updates with every new release.</p>
             </section>
 
             <section>
@@ -51,7 +51,13 @@
     .then(data => {
         const content = data.record;
         const version = content.version || "latest";
-        const updaterlink = content.updater || "#"
+        const updaterlink = content.updater || "#";
+        const torrentlink = content.torrent || "#"
+
+        // Replace torrent link
+        document.querySelectorAll(".torrent").forEach(el => {
+            el.href = torrentlink;
+        });
 
         // Replace in download button
         document.querySelectorAll(".download-btn").forEach(el => {
