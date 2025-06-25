@@ -29,10 +29,7 @@
             <section>
                 <h2>Get Involved</h2>
                 <p>Want to contribute or join the Crypt team?</p>
-                <ul>
-                    <li><a id="user-apply-link" href="#">Apply for a user account</a></li>
-                    <li><a href="mailto:updates.cryptexe@outlook.com?subject=Recruitment">Join the Crypt team</a></li>
-                </ul>
+                <a href="mailto:updates.cryptexe@outlook.com?subject=Recruitment">Join the Crypt team</a>
             </section>
         </main>
 
@@ -54,21 +51,13 @@
     .then(data => {
         const content = data.record;
         const version = content.version || "latest";
-        const link = content.link || "#";
-        const id = Math.floor(Math.random() * 900000 + 100000);
-        const message = encodeURIComponent("Hi! I’d like to join Crypt. Here's my username and password:");
+        const link = content.link || "#"
 
         // Replace in download button
         document.querySelectorAll(".download-btn").forEach(el => {
             el.href = link;
             el.textContent = `Download Crypt ${version}`;
-        });
-
-        // Update user application email
-        const userLink = document.getElementById("user-apply-link");
-        if (userLink) {
-            userLink.href = `mailto:updates.cryptexe@outlook.com?subject=User Application: ${id}&body=${message}`;
-        }
+        })
     })
     .catch(err => {
         console.error("Failed to load JSONBin data:", err);
