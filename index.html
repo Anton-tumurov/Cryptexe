@@ -1,30 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Crypt</title>
-  <meta charset="UTF-8">
-  <title>Crypt Project</title>
-  <link rel="stylesheet" href="static/style.css">
-  <script>
-    fetch("https://pup-profound-mite.ngrok-free.app", {mode: 'no-cors'})
-      .then(() => {
-        // Redirect to live Pi server
-        location.href = "https://pup-profound-mite.ngrok-free.app";
-      })
-      .catch(() => {
-        // Load and display fallback.html
-        fetch("fallback.html")
-          .then(response => response.text())
-          .then(html => {
-            document.body.innerHTML = html;
-          })
-          .catch(() => {
-            // If fallback.html also fails, redirect to website
-            location.href = "https://pup-profound-mite.ngrok-free.app";
-      });
-  </script>
+    <meta charset="UTF-8">
+    <title>Crypt Project</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <p>Redirecting to Crypt…</p>
+    <div class="container">
+        <header>
+            <h1>Welcome to Crypt</h1>
+            <p class="tagline">Secure messaging for fun & mischief (maybe in class)</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>Download</h2>
+                <p>
+                    <a class="download-btn" href="{link}">Download Crypt {version}</a> <br>
+                    Or <a class="torrent" href="{torrentlink}">download the torrent</a> <em>(if you're into that kind of stuff)</em>
+                </p>
+            </section>
+
+            <section>
+                <h2>About</h2>
+                <p>Crypt is an encryption system for sending secret messages. Inspired by questionable class antics, this project is totally educational... <em>probably.</em></p>
+            </section>
+
+            <section>
+                <h2>Get Involved</h2>
+                <p>Want to contribute or join the Crypt team?</p>
+                <a href="mailto:updates.cryptexe@outlook.com?subject=Recruitment">Join the Crypt team</a>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Crypt Project. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+    const BIN_ID = "67b6c25cacd3cb34a8e9372c"; 
+    const API_KEY = "$2a$10$coWigkYNJbj.z.EUyfjUgurk/Xkg/olZFEXFWplgUtfIhtY9m/rOC"; // (OK if public info only)
+
+    fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        headers: {
+            "X-Access-Key": API_KEY
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        const content = data.record;
+        const version = content.version || "latest";
+        const updaterlink = content.updater || "#";
+        const torrentlink = content.torrent || "#"
+
+        // Replace torrent link
+        document.querySelectorAll(".torrent").forEach(el => {
+            el.href = torrentlink;
+        });
+
+        // Replace in download button
+        document.querySelectorAll(".download-btn").forEach(el => {
+            el.href = updaterlink;
+            el.textContent = `Download Crypt ${version}`;
+        })
+    })
+    .catch(err => {
+        console.error("Failed to load JSONBin data:", err);
+    });
+    </script>
 </body>
 </html>
