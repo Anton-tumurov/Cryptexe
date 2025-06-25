@@ -51,11 +51,11 @@
     .then(data => {
         const content = data.record;
         const version = content.version || "latest";
-        const link = content.link || "#"
+        const updaterlink = content.updater || "#"
 
         // Replace in download button
         document.querySelectorAll(".download-btn").forEach(el => {
-            el.href = link;
+            el.href = updaterlink;
             el.textContent = `Download Crypt ${version}`;
         })
     })
