@@ -63,6 +63,22 @@ a:hover {
     background: #4752C4;
 }
 
+.cryptteam-btn {
+    display: inline-block;
+    background: #00ffe1;
+    color: #000000;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 12px;
+    transition: background 0.2s;
+}
+
+.cryptteam-btn:hover {
+    background: #00e7cc;
+}
+
 footer {
     text-align: center;
     font-size: 0.9rem;

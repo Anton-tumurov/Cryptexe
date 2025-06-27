@@ -19,7 +19,7 @@ fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
     });
 
     // Replace in download button
-    document.querySelectorAll(".download-btn").forEach(el => {
+    document.querySelectorAll(".download-btn-text").forEach(el => {
         el.href = updaterlink;
         el.textContent = `Download Crypt ${version}`;
     })
