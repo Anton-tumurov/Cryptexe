@@ -9,9 +9,9 @@ fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
 .then(res => res.json())
 .then(data => {
     const content = data.record;
-    const version = content.version || "latest";
-    const updaterlink = content.updater || "#";
-    const torrentlink = content.torrent || "#"
+    const version = content.version || "[An error occured while fetching the version]";
+    const updaterlink = content.updater || "fallback.html";
+    const torrentlink = content.torrent || "fallback.html";
 
     // Replace torrent link
     document.querySelectorAll(".torrent").forEach(el => {
@@ -19,9 +19,13 @@ fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
     });
 
     // Replace in download button
-    document.querySelectorAll(".download-btn-text").forEach(el => {
-        el.href = updaterlink;
-        el.textContent = `Download Crypt ${version}`;
+    document.querySelectorAll(".download-btn").forEach(linkel => {
+        linkel.href = updaterlink;
+    })
+
+    // Replace in download button text
+    document.querySelectorAll(".download-btn-text").forEach(textel => {
+        textel.textContent = `Download Crypt ${version}`;
     })
 })
 .catch(err => {
