@@ -21,7 +21,7 @@ fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
     // Replace in download button
     document.querySelectorAll(".download-btn").forEach(linkel => {
         linkel.href = updaterlink;
-    })
+    });
 
     // Replace in download button text
     document.querySelectorAll(".download-btn-text").forEach(textel => {
