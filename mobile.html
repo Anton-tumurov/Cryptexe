@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Crypt Mobile Page</h1>
+            <p class="tagline">Secure messaging for fun & mischief</p>
+        </header>
+        <main>
+            <section>
+                <p>You may have just opened this QR code accidentally, but this isn't just some random website you've found--this is Crypt.</p>
+            </section>
+            <section>
+                <h2>About Crypt</h2>
+                <p>Crypt is an encryption system for sending private, secret messages. Undecipherable to anyone but the intended recipient.</p>
+                <p>This is ideal for the hell-hole that is school, where snooping eyes are everywhere.</p>
+            </section>
+            <section>
+                <h2>How can I use Crypt?</h2>
+                <p>Sadly, we do not have a mobile app yet, <em>(I don't know if you view that as a bad thing)</em> so just open this website on your computer and download it from there!</p>
+                <button class="crypt-btn" id="copy-link-btn">Copy Link</button>
+                <p id="copy-status" style="color:#00ffea;font-size:0.95em;margin-top:8px;display:none;">Link copied!</p>
+                <script>   
+                    document.getElementById('copy-link-btn').addEventListener('click', function() {
+                        const url = window.location.origin + '/index.html';
+                        navigator.clipboard.writeText(url).then(function() {
+                            const status = document.getElementById('copy-status');
+                            status.style.display = 'block';
+                            setTimeout(() => { status.style.display = 'none'; }, 1800);
+                        });
+                    });
+                </script>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Crypt. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

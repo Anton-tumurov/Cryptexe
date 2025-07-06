@@ -36,7 +36,7 @@ a:hover {
     text-decoration: underline;
 }
 
-.download-btn {
+.crypt-btn {
     background: #00ffea;
     color: #121212;
     padding: 10px 20px;
@@ -63,7 +63,7 @@ a:hover {
     background: #4752C4;
 }
 
-.cryptteam-btn {
+.join-team-btn {
     display: inline-block;
     background: #00ffe1;
     color: #000000;
@@ -75,7 +75,7 @@ a:hover {
     transition: background 0.2s;
 }
 
-.cryptteam-btn:hover {
+.join-team-btn:hover {
     background: #00c3ac;
 }
 
