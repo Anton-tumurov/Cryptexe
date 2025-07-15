@@ -15,18 +15,18 @@
         </header>
         <main>
             <section>
-                <p>You may have just opened this QR code accidentally, but this isn't just some random website you've found--this is Crypt.</p>
+                <p>You may have just opened this QR code out of curiosity, but this isn't just some random website--this is Crypt.</p>
             </section>
             <section>
                 <h2>About Crypt</h2>
                 <p>Crypt is an encryption system for sending private, secret messages. Undecipherable to anyone but the intended recipient.</p>
-                <p>This is ideal for the hell-hole that is school, where snooping eyes are everywhere.</p>
+                <p>This is ideal for the hell-hole that is school, where snooping eyes are everywhere, and teachers hate privacy.</p>
             </section>
             <section>
                 <h2>How can I use Crypt?</h2>
-                <p>Sadly, we do not have a mobile app yet, <em>(I don't know if you view that as a bad thing)</em> so just open this website on your computer and download it from there!</p>
+                <p>Since Crypt is a desktop app, you will have to copy the link to this website and download from there. We've provided a convenient button here:</p>
                 <button class="crypt-btn" id="copy-link-btn">Copy Link</button>
-                <p id="copy-status" style="color:#00ffea;font-size:0.95em;margin-top:8px;display:none;">Link copied!</p>
+                <p id="copy-status" style="color:#00ffea;font-size:0.95em;margin-top:8px;display:none;">Link copied to clipboard!</p>
                 <script>   
                     document.getElementById('copy-link-btn').addEventListener('click', function() {
                         const url = window.location.origin + '/index.html';
@@ -38,6 +38,7 @@
                     });
                 </script>
             </section>
+            <script src="main.js"></script>
         </main>
         <footer>
             <p>&copy; 2025 Crypt. All rights reserved.</p>
