@@ -36,6 +36,18 @@ a:hover {
     text-decoration: underline;
 }
 
+.logo {
+    text-align: center;
+    display: block;
+    background: #0f0121;
+    color: #121212;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 25px;
+    margin: 20px 0;
+    padding: 10px;
+}
+
 .crypt-btn {
     background: #00ffea;
     color: #121212;
