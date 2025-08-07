@@ -10,8 +10,6 @@
       padding: 0;
     }
     iframe {
-      width: 300px;
-      height: 250px;
       border: none;
     }
     .ad-top-buttons {
@@ -22,7 +20,7 @@
       gap: 4px;
     }
 
-    .ad-top-buttons button {
+    .ad-top-buttons a {
       width: 20px;
       height: 20px;
       border: none;
@@ -36,18 +34,17 @@
       padding: 0;
     }
 
-    .ad-top-buttons button:hover {
+    .ad-top-buttons a:hover {
       background-color: rgba(255, 255, 255, 1);
     }
 
   </style>
 </head>
 <body>
-  <iframe id="ad-frame" src="ads/example.html"></iframe>
+  <iframe id="ad-frame" src="ads/example.html" width="780" height="90"></iframe>
     <!-- Add inside ad1.html or any ad.html -->
     <div class="ad-top-buttons">
-        <a href="partners.html" class="info-btn" onclick="alert('Ad by SnackBros™. No tracking. For inquiries, contact Anton.')">i</a>
-        <button class="more-btn" onclick="alert('Want to advertise here? Message Anton privately.')">⋮</button>
+        <a href="partners.html" target="_blank" class="info-btn">i</a>
     </div>
 
   <script>
