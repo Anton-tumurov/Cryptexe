@@ -3,10 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <title>Crypt Example Ad</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    iframe {
+      border: none;
+    }
+    .ad-top-buttons {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .ad-top-buttons a {
+      width: 20px;
+      height: 20px;
+      border: none;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      line-height: 20px;
+      padding: 0;
+    }
+
+    .ad-top-buttons a:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+  </style>
 </head>
 <body>
   <a href="https://example.com" target="_blank">
     <img src="example.png" alt="Example Ad" title="Example Ad" height="90" width="728">
   </a>
+  <!-- Add inside ad.html -->
+  <div class="ad-top-buttons">
+      <a href="partners.html" target="_blank" class="info-btn">i</a>
+  </div>
 </body>
 </html>

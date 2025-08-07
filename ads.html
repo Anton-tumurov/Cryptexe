@@ -3,49 +3,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Crypt Ads</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    iframe {
-      border: none;
-    }
-    .ad-top-buttons {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      display: flex;
-      gap: 4px;
-    }
-
-    .ad-top-buttons a {
-      width: 20px;
-      height: 20px;
-      border: none;
-      border-radius: 50%;
-      font-size: 12px;
-      font-weight: bold;
-      cursor: pointer;
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #333;
-      line-height: 20px;
-      padding: 0;
-    }
-
-    .ad-top-buttons a:hover {
-      background-color: rgba(255, 255, 255, 1);
-    }
-
-  </style>
+  <title>Ads</title>
 </head>
 <body>
   <iframe id="ad-frame" src="ads/example.html" width="780" height="90"></iframe>
-    <!-- Add inside ad1.html or any ad.html -->
-    <div class="ad-top-buttons">
-        <a href="partners.html" target="_blank" class="info-btn">i</a>
-    </div>
 
   <script>
     // Example URL: https://example.com/page?name=John&age=30
@@ -65,7 +26,7 @@
         ads = text.trim().split('\n');
         if (ads.length > 0) rotateAd();
         setInterval(rotateAd, 6000);
-      });
+    });
 
     function rotateAd() {
       const iframe = document.getElementById('ad-frame');
