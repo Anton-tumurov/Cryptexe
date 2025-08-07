@@ -8,10 +8,13 @@
     body {
       margin: 0;
       padding: 0;
+      text-align: center;
     }
+
     iframe {
       border: none;
     }
+
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background: #121212;
@@ -31,10 +34,19 @@
       padding: 100px 0;
       border-bottom: 1px solid #333;
     }
+
+    .tagline {
+      color: #999;
+      font-size: 1rem;
+    }
+
+    a {
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <a href="partners.html" class="header" target="_blank">Advertisement</a>
+  <header><a href="partners.html" class="tagline" target="_blank">Advertisement</a></header>
   <iframe id="ad-frame" src="ads/example.html" width="780" height="90" frameborder="0"></iframe>
 
   <script>
