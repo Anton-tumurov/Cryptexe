@@ -43,13 +43,12 @@
   </style>
 </head>
 <body>
-  <iframe id="ad-frame" src="/ads/example.html">
-  <!-- Add inside ad1.html or any ad.html -->
+  <iframe id="ad-frame" src="ads/example.html"></iframe>
+    <!-- Add inside ad1.html or any ad.html -->
     <div class="ad-top-buttons">
-      <a href="partners.html" class="info-btn" onclick="alert('Ad by SnackBros™. No tracking. For inquiries, contact Anton.')">i</a>
-      <button class="more-btn" onclick="alert('Want to advertise here? Message Anton privately.')">⋮</button>
+        <a href="partners.html" class="info-btn" onclick="alert('Ad by SnackBros™. No tracking. For inquiries, contact Anton.')">i</a>
+        <button class="more-btn" onclick="alert('Want to advertise here? Message Anton privately.')">⋮</button>
     </div>
-  </iframe>
 
   <script>
     // Example URL: https://example.com/page?name=John&age=30
@@ -63,7 +62,7 @@
     let ads = [];
     let current = 0;
 
-    fetch('/ads/ads.txt')
+    fetch('ads/ads.txt')
       .then(res => res.text())
       .then(text => {
         ads = text.trim().split('\n');
@@ -73,12 +72,12 @@
 
     function rotateAd() {
       const iframe = document.getElementById('ad-frame');
-      iframe.src = `/ads/${ads[current]}`;
+      iframe.src = `ads/${ads[current]}`;
       if (chosenad) {
-        iframe.src = `/ads/${chosenad}.html`;
+        iframe.src = `ads/${chosenad}.html`;
       } else {
         current = (current + 1) % ads.length;
-      };
+      }
     }
   </script>
 </body>
