@@ -23,7 +23,7 @@ header {
     font-size: 1rem;
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: #00ffea;
 }
 
@@ -48,7 +48,7 @@ a:hover {
     padding: 10px;
 }
 
-.crypt-btn {
+.crypt-btn-important {
     background: #00ffea;
     color: #121212;
     padding: 10px 20px;
@@ -75,7 +75,7 @@ a:hover {
     background: #4752C4;
 }
 
-.join-team-btn {
+.crypt-btn {
     display: inline-block;
     background: #00ffe1;
     color: #000000;
@@ -87,7 +87,7 @@ a:hover {
     transition: background 0.2s;
 }
 
-.join-team-btn:hover {
+.crypt-btn:hover {
     background: #00c3ac;
 }
 
