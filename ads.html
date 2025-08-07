@@ -4,9 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <title>Ads</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    iframe {
+      border: none;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 0;
+      border-bottom: 1px solid #333;
+    }
+  </style>
 </head>
 <body>
-  <iframe id="ad-frame" src="ads/example.html" width="780" height="90"></iframe>
+  <a href="partners.html" class="header" target="_blank">Advertisement</a>
+  <iframe id="ad-frame" src="ads/example.html" width="780" height="90" frameborder="0"></iframe>
 
   <script>
     // Example URL: https://example.com/page?name=John&age=30
