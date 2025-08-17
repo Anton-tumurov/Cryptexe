@@ -18,28 +18,36 @@
         </header>
         <main>
             <section>
-                <p>You may have just opened this QR code out of curiosity, but this isn't just some random website--this is Crypt.</p>
+                <p>You may have just opened this QR code out of curiosity, but this isn't just some random shady website&mdash;this is Crypt.</p>
             </section>
             <section>
                 <h2>About Crypt</h2>
-                <p>Crypt is an encryption system for sending private, secret messages. Undecipherable to anyone but the intended recipient.</p>
+                <p>Crypt is a secure messaging app, using a private encryption system for sending private, secret messages. Undecipherable to anyone but the intended recipient.</p>
+                <p>This revolutionary software is designed to keep your conversations safe from prying eyes, by using a private encryption method, that has been tested thoroughly to ensure maximum privacy. If you have any privacy concerns, consider contacting me.</p>
+                <iframe src="ads.html" width="100%" height="140" frameborder="0"></iframe>
             </section>
             <section>
                 <h2>How can I use Crypt?</h2>
                 <p>Since Crypt is a desktop app, you will have to copy the link to this website and download from there. We've provided a convenient button here:</p>
                 <button class="crypt-btn-important" id="copy-link-btn">Copy Link</button>
                 <p id="copy-status" style="color:#00ffea;font-size:0.95em;margin-top:8px;display:none;">Link copied to clipboard!</p>
-                <script>   
-                    document.getElementById('copy-link-btn').addEventListener('click', function() {
-                        const url = window.location.origin + '/index.html';
-                        navigator.clipboard.writeText(url).then(function() {
-                            const status = document.getElementById('copy-status');
-                            status.style.display = 'block';
-                            setTimeout(() => { status.style.display = 'none'; }, 1800);
-                        });
-                    });
-                </script>
             </section>
+            <section>
+                    <h2>Get Involved</h2>
+                    <p>Want to contribute or join the Crypt team?</p>
+                    <p>For bug reports, feature requests, suggestions, and other questions:</p>
+                    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="thecrypts" data-description="Support me on Buy me a coffee!" data-message="To Support this project, consider supporting on Buy Me a Coffee!" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+                    <a class="crypt-btn" href="mailto:updates.cryptexe@outlook.com">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" alt="Crypt Recruitment" style="height:2em;vertical-align:middle;margin-right:8px;"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                        </svg>
+                        Contact the Crypt team
+                    </a>
+                    <br>
+                    <a class="discord-btn" href="http://discord.gg/WjnDBHzgBv" target="_blank">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" alt="Discord" style="height:2em;vertical-align:middle;margin-right:8px;">
+                        Join the Discord server!
+                    </a>
+                </section>
             <script src="mobile.js"></script>
         </main>
         <footer>
