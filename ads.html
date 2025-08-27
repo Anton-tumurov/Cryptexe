@@ -6,22 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ads</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
     iframe {
       border: none;
     }
 
-    body {
+    html, body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background: #121212;
       color: #f0f0f0;
       margin: 0;
       padding: 0;
+      overflow: hidden;
     }
 
     header {
@@ -42,7 +37,7 @@
 </head>
 <body>
   <header><a href="partners.html" class="tagline" target="_blank">Advertisement</a></header>
-  <iframe id="ad-frame" src="ads/example.html" width="100%" height="100" frameborder="0"></iframe>
+  <iframe id="ad-frame" src="ads/example.html" width="100%" height="100%" frameborder="0"></iframe>
 
   <script>
     // Example URL: https://example.com/page?name=John&age=30
