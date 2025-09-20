@@ -6,8 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ads</title>
   <style>
-    iframe {
-      border: none;
+    .container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding-top: 12.36263736263736%; /* 728:90 Aspect Ratio (divide 90 by 728 = 0.1236263736263736) */
+    }
+
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
     }
 
     html, body {
@@ -37,7 +51,10 @@
 </head>
 <body>
   <header><a href="partners.html" class="tagline" target="_blank">Advertisement</a></header>
-  <iframe id="ad-frame" src="ads/example.html" width="100%" height="90%" frameborder="0"></iframe>
+  <div class="container">
+    <iframe class="responsive-iframe" id="ad-frame" src="ads/example.html"></iframe>
+  </div>
+  
 
   <script>
     // Example URL: https://example.com/page?name=John&age=30
