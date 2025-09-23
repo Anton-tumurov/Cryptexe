@@ -62,33 +62,34 @@
   
 
   <script>
-    // Example URL: https://example.com/page?name=John&age=30
+    // Example URL: https://.../ads.html?ad=example
+    // or for multiple ads: https://.../ads.html?ad=example,example2
+    // Parse URL parameters
     const params = new URLSearchParams(window.location.search);
-    
-    // Get specific query parameters
-    const chosenad = params.get('ad'); // "example"
-
-    console.log(`Chosen ad: ${chosenad}`);
-
     let ads = [];
     let current = 0;
-
-    fetch('ads/ads.txt')
-      .then(res => res.text())
-      .then(text => {
-        ads = text.trim().split('\n');
-        if (ads.length > 0) rotateAd();
-        setInterval(rotateAd, 6000);
-    });
 
     function rotateAd() {
       const iframe = document.getElementById('ad-frame');
       iframe.src = `ads/${ads[current]}`;
-      if (chosenad) {
-        iframe.src = `ads/${chosenad}.html`;
-      } else {
-        current = (current + 1) % ads.length;
-      }
+      current = (current + 1) % ads.length;
+    }
+
+    const adParam = params.get('ad');
+    if (adParam) {
+      ads = adParam.split(',').map(a => a.trim()).filter(a => a).map(a => `${a}.html`);
+      rotateAd();
+      if (ads.length > 1) setInterval(rotateAd, 6000);
+    } else {
+      fetch('ads/ads.txt')
+        .then(res => res.text())
+        .then(text => {
+          ads = text.trim().split('\n').filter(a => a);
+          if (ads.length > 0) {
+            rotateAd();
+            if (ads.length > 1) setInterval(rotateAd, 6000);
+          }
+        });
     }
   </script>
 </body>
