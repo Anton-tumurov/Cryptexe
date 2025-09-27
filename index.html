@@ -47,8 +47,8 @@ layout: null
     <body>
         <div class="container">
             <header>
-                <a href="index.html" class="platform">
-                    <img src="static/expanded-logo.png" alt="Crypt Logo" class="logo" width="200">
+                <a href="index.html">
+                    <img src="static/expanded-logo.png" alt="Crypt Logo" class="logo platform" width="200">
                 </a>
                 <h1>Welcome to Crypt</h1>
                 <p class="tagline">Secure messaging for privacy & security</p>
@@ -82,16 +82,18 @@ layout: null
                     <h2>Latest Updates</h2>
                     {% assign latest = site.posts | first %}
                     {% if latest %}
-                        <article class="platform">
-                            <h3><a href="{{ latest.url | relative_url }}">{{ latest.title }}</a></h3>
-                            <p class="tagline">{{ latest.date | date: "%B %d, %Y" }}</p>
+                        <article class="platform" style="max-width: 300px">
+                            <a href="{{ latest.url | relative_url }}">
+                                <h3>{{ latest.title }}</h3>
+                                <p class="tagline">{{ latest.date | date: "%B %d, %Y" }}</p>
+                            </a>
                             <div>
-                                {{ latest.excerpt }}
+                                {{ latest.content }}
                             </div>
                         </article>
                         <p><a class="crypt-btn" href="/Cryptexe/updates.html">See all updates →</a></p>
                     {% else %}
-                        <p>No updates yet. Check back soon!</p>
+                        <p class="tagline">No updates yet. Check back soon!</p>
                     {% endif %}
                 </section>
 

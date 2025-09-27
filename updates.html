@@ -47,8 +47,8 @@ layout: null
 <body>
     <div class="container">
         <header>
-            <a href="/Cryptexe/index.html" class="platform">
-                <img src="static/expanded-logo.png" alt="Crypt Logo" class="logo" width="200">
+            <a href="/Cryptexe/index.html">
+                <img src="static/expanded-logo.png" alt="Crypt Logo" class="logo platform" width="200">
             </a>
             <h1>Updates</h1>
             <p class="tagline">View blog posts and updates relating to Crypt.</p>
@@ -60,12 +60,17 @@ layout: null
                     <iframe src="/Cryptexe/ads.html" style="position: absolute; border: none; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;"></iframe>
                 </div>
                 {% for post in site.posts %}
-                <article class="platform">
-                    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-                    <p class="tagline">{{ post.date | date: "%B %d, %Y" }}</p>                    <div>
-                        {{ post.excerpt }}
+                <hr>
+                <article class="platform" style="max-width: 300px">
+                    <a href="{{ post.url | relative_url }}">
+                        <h3>{{ post.title }}</h3>
+                        <p class="tagline">{{ post.date | date: "%B %d, %Y" }}</p>
+                    </a>
+                    <div>
+                        {{ post.content }}
                     </div>
                 </article>
+                <p><a class="crypt-btn" href="/Cryptexe/updates.html">See all updates →</a></p>
                 {% endfor %}
             </section>
         </main>
