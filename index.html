@@ -82,16 +82,16 @@ layout: null
                     <h2>Latest Updates</h2>
                     {% assign latest = site.posts | first %}
                     {% if latest %}
-                        <article class="platform" style="max-width: 300px">
+                        <article class="platform" style="max-width: 600px">
                             <a href="{{ latest.url | relative_url }}">
                                 <h3>{{ latest.title }}</h3>
                                 <p class="tagline">{{ latest.date | date: "%B %d, %Y" }}</p>
                             </a>
+                            <br>
                             <div>
                                 {{ latest.content }}
                             </div>
                         </article>
-                        <p><a class="crypt-btn" href="/Cryptexe/updates.html">See all updates →</a></p>
                     {% else %}
                         <p class="tagline">No updates yet. Check back soon!</p>
                     {% endif %}

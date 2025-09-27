@@ -45,7 +45,7 @@ iframe {
     text-align: left;
     display: block;
     background: #0f0121;
-    color: #121212;
+    color: #f0f0f0; /* <-- Change to light text */
     padding: 10px 20px;
     margin-top: 10px;
     border-radius: 25px;
