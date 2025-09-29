@@ -2,8 +2,6 @@ backend:
   name: github
   repo: anton-tumurov/Cryptexe
   branch: main
-  base_url: https://YOUR-OAUTH-APP-URL   # we’ll set this up later
-  auth_endpoint: auth
 
 media_folder: "assets/uploads"
 public_folder: "/Cryptexe/assets/uploads"
