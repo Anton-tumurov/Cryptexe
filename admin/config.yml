@@ -1,0 +1,21 @@
+backend:
+  name: github
+  repo: anton-tumurov/Cryptexe
+  branch: main
+  base_url: https://YOUR-OAUTH-APP-URL   # we’ll set this up later
+  auth_endpoint: auth
+
+media_folder: "assets/uploads"
+public_folder: "/Cryptexe/assets/uploads"
+
+collections:
+  - name: "posts"
+    label: "Updates"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "update"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
