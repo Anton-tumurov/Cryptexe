@@ -112,7 +112,7 @@
 
             <section>
                 <p>Fill out the form below to get started:</p>
-                <form id="sponsorForm" action="https://formspree.io/f/your-form-id" method="POST" enctype="multipart/form-data">
+                <form id="sponsorForm" action="https://formspree.io/f/xzzjbbae" method="POST">
                     
                     <!-- Common fields -->
                     <div class="common-field">
@@ -169,7 +169,7 @@
                     <!-- Plan-specific fields -->
                     <div id="standardAdFields" class="plan-fields" style="display:none;">
                         <label>
-                            Ad Image URL:
+                            Ad Image URL (728x90px):
                             <input type="url" name="ad_image" placeholder="https://example.com/logo.png" required>
                         </label>
                         <br>
@@ -205,8 +205,12 @@
                     <br><br>
 
                     <!-- Total cost display -->
-                    <h3>Total Cost: <span id="totalCost" style="color: lightgreen;">0</span></h3>
-                    <br>
+                    <div id="totalCostContainer" style="display: none;">
+                        <label>
+                            Total Cost:
+                            <h2 id="totalCost" style="color: lightgreen;">0</h2>
+                        </label>
+                    </div>
 
                     <button type="submit">Submit</button>
                     </form>
@@ -235,62 +239,69 @@
                     const paymentMethod = document.getElementById('paymentMethod');
                     const durationWeeks = document.getElementById('durationWeeks');
                     const totalCostDisplay = document.getElementById('totalCost');
+                    const totalCostContainer = document.getElementById('totalCostContainer');
 
                     // Hide/show fields based on plan
                     function updateFormFields() {
-                    document.querySelectorAll('.plan-fields').forEach(div => {
-                        div.style.display = 'none';
-                        div.querySelectorAll('input, textarea').forEach(el => el.required = false);
-                    });
+                        document.querySelectorAll('.plan-fields').forEach(div => {
+                            div.style.display = 'none';
+                            div.querySelectorAll('input, textarea').forEach(el => el.required = false);
+                        });
 
-                    const fieldsToShow = planFieldsMap[planSelect.value] || [];
-                    fieldsToShow.forEach(id => {
-                        const div = document.getElementById(id);
-                        if (div) {
-                        div.style.display = 'block';
-                        div.querySelectorAll('input, textarea').forEach(el => el.required = true);
-                        }
-                    });
+                        const fieldsToShow = planFieldsMap[planSelect.value] || [];
+                        fieldsToShow.forEach(id => {
+                            const div = document.getElementById(id);
+                            if (div) {
+                                div.style.display = 'block';
+                                div.querySelectorAll('input, textarea').forEach(el => el.required = true);
+                            }
+                        });
 
-                    updateTotalCost();
+                        updateTotalCost();
                     }
 
                     // Calculate total cost
                     async function updateTotalCost() {
-                    const plan = planSelect.value;
-                    const weeks = parseInt(durationWeeks.value) || 1;
-                    const method = paymentMethod.value;
+                        const plan = planSelect.value;
+                        const weeks = parseInt(durationWeeks.value) || 1;
+                        const method = paymentMethod.value;
 
-                    if (!plan || !method || !planBasePriceAUD[plan]) {
-                        totalCostDisplay.textContent = '0';
-                        return;
-                    }
+                        if (!plan || !method || !planBasePriceAUD[plan]) {
+                            totalCostDisplay.textContent = '0';
+                            totalCostContainer.style.display = 'none';
+                            return;
+                        }
 
-                    const basePriceAUD = planBasePriceAUD[plan] ? planBasePriceAUD[plan](weeks) : 0;
-                    let totalText = '';
+                        const basePriceAUD = planBasePriceAUD[plan] ? planBasePriceAUD[plan](weeks) : 0;
+                        let totalText = '';
 
-                    if (method === 'AUD') {
-                        totalText = `${(basePriceAUD * weeks).toFixed(2)} AUD`;
-                    } else {
-                        // Use CoinGecko API to convert AUD → crypto
-                        const cryptoMap = { BTC: 'bitcoin', ETH: 'ethereum', XMR: 'monero' };
-                        const coinId = cryptoMap[method];
-                            if (!coinId) {
-                            totalText = 'Error';
-                            } else {
-                            try {
-                                const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=aud`);
-                                const data = await response.json();
-                                const rate = data[coinId].aud;
-                                const totalCrypto = (basePriceAUD * weeks) / rate;
-                                totalText = `${totalCrypto.toFixed(8)} ${method}`;
-                            } catch (err) {
-                                totalText = 'Error fetching rate';
+                        if (method === 'AUD') {
+                            totalText = `${basePriceAUD.toFixed(2)} AUD`;
+                        } else {
+                            // Use CoinGecko API to convert AUD → crypto
+                            const cryptoMap = { BTC: 'bitcoin', ETH: 'ethereum', XMR: 'monero' };
+                            const coinId = cryptoMap[method];
+                                if (!coinId) {
+                                totalText = 'Error';
+                                } else {
+                                try {
+                                    const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=aud`);
+                                    const data = await response.json();
+                                    const rate = data[coinId].aud;
+                                    const totalCrypto = (basePriceAUD) / rate;
+                                    totalText = `${totalCrypto.toFixed(8)} ${method}`;
+                                } catch (err) {
+                                    totalText = 'Error fetching rate';
+                                }
                             }
                         }
-                    }
 
-                    totalCostDisplay.textContent = totalText;
+                        totalCostDisplay.textContent = totalText;
+                        if (totalCostDisplay.textContent !== '0') {
+                            totalCostContainer.style.display = 'block';
+                        } else {
+                            totalCostContainer.style.display = 'none';
+                        }
                     }
 
                     // ------------------ Event listeners ------------------
