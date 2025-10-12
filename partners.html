@@ -111,25 +111,45 @@
             </section>
 
             <section>
+                <p>Fill out the form below to get started:</p>
                 <form id="sponsorForm" action="https://formspree.io/f/your-form-id" method="POST" enctype="multipart/form-data">
                     
                     <!-- Common fields -->
                     <div class="common-field">
                         <label>
-                            Company/Name:
-                            <input type="text" name="company_name" required>
+                            Company Name:
+                            <input type="text" name="name" required>
                         </label>
                         <br>
                         <label>
                             Contact Email:
-                            <input type="email" name="contact_email" required>
+                            <input type="email" name="email" required>
                         </label>
                         <br>
                         <label>
                             Website URL:
-                            <input type="url" name="website_url" placeholder="https://example.com" required>
+                            <input type="url" name="url" placeholder="https://example.com" required>
                         </label>
                     </div>
+                    <br>
+
+                    <!-- Payment method -->
+                    <label>
+                        Payment Method:
+                        <select id="paymentMethod" name="payment_method" required>
+                            <option value="AUD" selected>AUD</option>
+                            <option value="BTC">Bitcoin</option>
+                            <option value="ETH">Ethereum</option>
+                            <option value="XMR">Monero</option>
+                        </select>
+                    </label>
+                    <br>
+
+                    <!-- Duration -->
+                    <label>
+                        Duration (weeks):
+                        <input type="number" id="durationWeeks" name="duration_weeks" min="1" value="1" required>
+                    </label>
                     <br>
 
                     <!-- Plan selection -->
@@ -144,26 +164,7 @@
                             <option value="custom_arrangements">Custom Arrangements</option>
                         </select>
                     </label>
-                    <br><br>
-
-                    <!-- Payment method -->
-                    <label>
-                        Payment Method:
-                        <select id="paymentMethod" name="payment_method" required>
-                            <option value="AUD" selected>AUD</option>
-                            <option value="BTC">Bitcoin</option>
-                            <option value="ETH">Ethereum</option>
-                            <option value="XMR">Monero</option>
-                        </select>
-                    </label>
-                    <br><br>
-
-                    <!-- Duration -->
-                    <label>
-                        Duration (weeks):
-                        <input type="number" id="durationWeeks" name="duration_weeks" min="1" value="1" required>
-                    </label>
-                    <br><br>
+                    <br>
 
                     <!-- Plan-specific fields -->
                     <div id="standardAdFields" class="plan-fields" style="display:none;">
@@ -200,10 +201,11 @@
                         <br>
                         <label>We will reach back to you via email to discuss the details.</label>
                     </div>
-                    <br>
+
+                    <br><br>
 
                     <!-- Total cost display -->
-                    <p>Total Cost: <span id="totalCost" style="color: green;">0</span></p>
+                    <h3>Total Cost: <span id="totalCost" style="color: lightgreen;">0</span></h3>
                     <br>
 
                     <button type="submit">Submit</button>
@@ -220,7 +222,7 @@
                     };
 
                     // ------------------ Plan prices (in AUD for base) ------------------
-                    const planPriceFunction = {
+                    const planBasePriceAUD = {
                         standard_ad: weeks => 2 * weeks, // $2/week
                         ad_design: weeks => weeks <= 1 ? 4 : 4 + (weeks - 1) * 2, // $4 for first week, $2 for each additional week
                         standard_credits: weeks => 3 * weeks, // $3/week

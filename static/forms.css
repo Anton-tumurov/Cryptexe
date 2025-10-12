@@ -14,8 +14,7 @@ form label {
     color: #00ffea;
 }
 
-form input[type="text"],
-form input[type="email"],
+form input,
 form select,
 form textarea {
     width: 100%;
@@ -37,7 +36,7 @@ form textarea:focus {
     outline: none;
 }
 
-form button[type="submit"] {
+form button {
     background: #00ffea;
     color: #121212;
     padding: 12px 28px;
@@ -49,6 +48,6 @@ form button[type="submit"] {
     transition: background 0.2s;
 }
 
-form button[type="submit"]:hover {
+form button:hover {
     background: #00c3ac;
 }
