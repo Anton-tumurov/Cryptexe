@@ -92,6 +92,8 @@
 
                 <h3><strong>Custom Arrangements:</strong> Upwards of ~$10/week or more</h3>
                 <p>We can organise a custom arrangement for you based on your requirements.</p>
+
+                <p>These plans are in AUD, conversion to crypto is done automatically and can fluctuate due to market. Plans are also subject to change.</p>
             </section>
 
             <section>
@@ -137,10 +139,10 @@
                     <label>
                         Payment Method:
                         <select id="paymentMethod" name="payment_method" required>
-                            <option value="AUD" selected>AUD</option>
-                            <option value="BTC">Bitcoin</option>
-                            <option value="ETH">Ethereum</option>
-                            <option value="XMR">Monero</option>
+                            <option value="AUD" selected>AUD - Australian Bank Transfer</option>
+                            <option value="BTC">BTC - Bitcoin</option>
+                            <option value="ETH">ETH - Ethereum</option>
+                            <option value="XMR">XMR - Monero</option>
                         </select>
                     </label>
                     <br>
@@ -210,13 +212,24 @@
                             Total Cost:
                             <h2 id="totalCost" style="color: lightgreen;">0</h2>
                         </label>
+                        <input type="hidden" id="totalCostInput" name="totalCost">
+                        <br>
+                        <label>Please pay here:</label>
+                        <div id="paymentDetails"></div>
+                        <input type="hidden" id="refCode" name="refCode" required>
+                        <br>
+                        <label>
+                            Press 'Submit' after making the payment.
+                            <h3 style="color: red;"><strong>Remember to include the reference code in your payment details or else your submission WILL NOT be processed.</strong></h3>
+                        </label>
                     </div>
 
                     <button type="submit">Submit</button>
+                    <p class="tagline"><strong>We will get back to you as soon as possible via your provided email.</strong> This is not final, we may discuss more about your needs before proceeding (particularly with ad design). We reserve the right to deny your request if it doesn't align with our policy. Our ad policy states: ads must not contain illegal content, offensive or discriminatory material, sexually explicit content, scams, malware, misleading information, or any content that infringes intellectual property rights. Ads that are legally or ethically gray may be considered on a case-by-case basis; approval does not constitute endorsement. All ads must be appropriate for a general audience.</p>
                     </form>
 
                     <script>
-                    // ------------------ Plan-field mapping (template) ------------------
+                    // ------------------ Plan-field mapping  ------------------
                     const planFieldsMap = {
                     standard_ad: ['standardAdFields'],
                     ad_design: ['adDesignFields'],
@@ -239,6 +252,7 @@
                     const paymentMethod = document.getElementById('paymentMethod');
                     const durationWeeks = document.getElementById('durationWeeks');
                     const totalCostDisplay = document.getElementById('totalCost');
+                    const totalCostInput = document.getElementById('totalCostInput');
                     const totalCostContainer = document.getElementById('totalCostContainer');
 
                     // Hide/show fields based on plan
@@ -259,6 +273,47 @@
 
                         updateTotalCost();
                     }
+                    // ------------------ Payment details ------------------
+                    const refCode = `AD${Date.now().toString(36).toUpperCase()}`; // Simple unique ref code
+                    function updatePaymentDetails(totalCost) {
+                        const method = paymentMethod.value;
+                        const detailsDiv = document.getElementById('paymentDetails');
+                        document.getElementById('refCode').value = refCode;
+                        let detailsHTML = '';
+
+
+                        if (method === 'AUD') {
+                            detailsHTML = `
+                                <code>
+                                    Account Name: Crypt
+                                    BSB: 814282
+                                    Acc: 51889406
+                                    Description/Reference: <strong>${refCode}</strong>
+                                </code>
+                                <p>Osko payments are accepted if fast transfer is needed.</p>
+                            `;
+                        } else if (method === 'BTC') {
+                            detailsHTML = `
+                                <a href="bitcoin:bc1q6a5jvzad39tdy3r7tphan86tyfhu75zqfumavr?amount=${totalCost}&label=Crypt&message=${refCode}" target="_blank">
+                                    bitcoin:bc1q6a5jvzad39tdy3r7tphan86tyfhu75zqfumavr?amount=${totalCost}&label=Crypt&message=${refCode}
+                                </a>
+                            `;
+                        } else if (method === 'ETH') {
+                            detailsHTML = `
+                                <a href="ethereum:0x33E5AD12e461a7079068eE8e6D0E49a0cF30E714?value=${totalCost}e18&message=${refCode}" target="_blank">
+                                    ethereum:0x33E5AD12e461a7079068eE8e6D0E49a0cF30E714?value=${totalCost}e18&message=${refCode}
+                                </a>
+                            `;
+                        } else if (method === 'XMR') {
+                            detailsHTML = `
+                                <a href="monero:85KFyrEtuLPdbciVJV31NQ8xYRzeLeVoFTNHN7SBNeqTMwA7AHUx8FoStyMwToYACXF3XnBUAHigTPVB6u5L459rUnBD1Dq?tx_amount=${totalCost}&recipient_name=Crypt&tx_description=${refCode}" target="_blank">
+                                    monero:85KFyrEtuLPdbciVJV31NQ8xYRzeLeVoFTNHN7SBNeqTMwA7AHUx8FoStyMwToYACXF3XnBUAHigTPVB6u5L459rUnBD1Dq?tx_amount=${totalCost}&recipient_name=Crypt&tx_description=${refCode}
+                                </a>
+                            `;
+                        }
+
+                        detailsDiv.innerHTML = detailsHTML;
+                    }
 
                     // Calculate total cost
                     async function updateTotalCost() {
@@ -276,7 +331,8 @@
                         let totalText = '';
 
                         if (method === 'AUD') {
-                            totalText = `${basePriceAUD.toFixed(2)} AUD`;
+                            totalCost = basePriceAUD.toFixed(2);
+                            totalText = `${totalCost} AUD`;
                         } else {
                             // Use CoinGecko API to convert AUD → crypto
                             const cryptoMap = { BTC: 'bitcoin', ETH: 'ethereum', XMR: 'monero' };
@@ -289,16 +345,18 @@
                                     const data = await response.json();
                                     const rate = data[coinId].aud;
                                     const totalCrypto = (basePriceAUD) / rate;
-                                    totalText = `${totalCrypto.toFixed(8)} ${method}`;
+                                    totalCost = totalCrypto.toFixed(8);
                                 } catch (err) {
-                                    totalText = 'Error fetching rate';
+                                    method = '';
+                                    totalCost = `Error fetching rate: ${err.message}`;
                                 }
                             }
                         }
 
-                        totalCostDisplay.textContent = totalText;
+                        totalCostDisplay.textContent = `${totalCost} ${method}`;
                         if (totalCostDisplay.textContent !== '0') {
                             totalCostContainer.style.display = 'block';
+                            updatePaymentDetails(totalCost);
                         } else {
                             totalCostContainer.style.display = 'none';
                         }
