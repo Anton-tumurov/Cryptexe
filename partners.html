@@ -276,7 +276,7 @@
                         updateTotalCost();
                     }
                     // ------------------ Payment details ------------------
-                    const refCode = `AD${Date.now().toString(36).toUpperCase()}`; // Simple unique ref code
+                    const refCode = `AD-${Date.now().toString(36).toUpperCase()}`; // Simple unique ref code
                     function updatePaymentDetails(totalCost) {
                         const method = paymentMethod.value;
                         const detailsDiv = document.getElementById('paymentDetails');
@@ -357,6 +357,7 @@
                         }
 
                         totalCostDisplay.textContent = `${totalCost} ${method}`;
+                        totalCostInput.value = `${totalCost} ${method}`;
                         if (totalCostDisplay.textContent !== '0') {
                             totalCostContainer.style.display = 'block';
                             updatePaymentDetails(totalCost);
